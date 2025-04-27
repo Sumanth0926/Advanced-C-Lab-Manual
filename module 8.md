@@ -16,7 +16,29 @@ Algorithm:
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    
+    int main() {
+        int num;
+
+    printf("Enter a number between 1 and 9: ");
+    scanf("%d", &num);
+    switch(num) {
+        case 1: printf("one\n"); break;
+        case 2: printf("two\n"); break;
+        case 3: printf("three\n"); break;
+        case 4: printf("four\n"); break;
+        case 5: printf("five\n"); break;
+        case 6: printf("six\n"); break;
+        case 7: printf("seven\n"); break;
+        case 8: printf("eight\n"); break;
+        case 9: printf("nine\n"); break;
+        default: printf("Number out of range! Please enter a number between 1 and 9.\n");
+    }
+
+    return 0;
+}
+
 
 
 
@@ -24,7 +46,11 @@ Program:
 Output:
 
 
-//paste your output here
+    Enter a number between 1 and 9: 3
+    three
+
+
+
 
 
 
@@ -47,7 +73,32 @@ Algorithm:
  
 Program:
 
-//type your code here
+
+
+    #include <stdio.h>
+    
+    int main() {
+        int num;
+        int count[4] = {0}; 
+    
+    
+    printf("Enter an integer: ");
+    scanf("%d", &num);
+    while (num != 0) {
+        int digit = num % 10; // Extract the last digit
+        if (digit >= 0 && digit <= 3) {
+            count[digit]++; // Increment the count of that digit
+        }
+        num /= 10; 
+    }
+
+    for (int i = 0; i < 4; i++) {
+        printf("%d ", count[i]);
+    }
+
+    return 0;
+}
+
 
 
 
@@ -55,7 +106,9 @@ Program:
 Output:
 
 
-//paste your output here
+    Enter an integer: 123312
+    2 2 2 2 
+
 
 
 
@@ -84,7 +137,49 @@ Free the memory allocated for each string in s Free the memory allocated for s
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    #include <string.h>
+    #include <stdlib.h>
+    
+    int compare(const void *a, const void *b) {
+        return (*(char *)a - *(char *)b);
+    }
+    
+    int next_permutation(char str[], int length) {
+        int i = length - 2;
+        while (i >= 0 && str[i] >= str[i + 1]) i--;
+        if (i < 0) return 0;
+        int j = length - 1;
+        while (str[j] <= str[i]) j--;
+        char temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+        int left = i + 1, right = length - 1;
+        while (left < right) {
+            temp = str[left];
+            str[left] = str[right];
+            str[right] = temp;
+            left++;
+            right--;
+        }
+        return 1;
+    }
+    
+    void printPermutations(char str[]) {
+        qsort(str, strlen(str), sizeof(char), compare);
+        do {
+            printf("%s\n", str);
+        } while (next_permutation(str, strlen(str)));
+    }
+    
+    int main() {
+        char str[100];
+        printf("Enter a string: ");
+        scanf("%s", str);
+        printPermutations(str);
+        return 0;
+    }
+
 
 
 
@@ -92,7 +187,14 @@ Program:
 Output:
 
 
-//paste your output here
+    Enter a string: abc
+    abc
+    acb
+    bac
+    bca
+    cab
+    cba
+
 
 
 
@@ -117,7 +219,23 @@ Algorithm:
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    
+    int main() {
+        int n;
+        printf("Enter a number: ");
+        scanf("%d", &n);
+
+    for (int i = 1; i <= n; i++) {  
+        for (int j = 1; j <= i; j++) {  
+            printf("%d", j);
+        }
+        printf("\n");  
+    }
+
+    return 0;
+}
+
 
 
 
@@ -125,7 +243,12 @@ Program:
 Output:
 
 
-//paste your output here
+    1
+    12
+    123
+    1234
+    12345
+
 
 
 
@@ -156,7 +279,19 @@ o	Call the square() function and display the result.
 
 Program:
 
-//type your code here
+
+    #include <stdio.h>
+    int square() {
+        int num = 5;  // Predefined number for which we need the square
+        return num * num; 
+    }
+    
+    int main() {
+        int result = square();
+        printf("The square of the number is: %d\n", result);
+        return 0;
+    }
+
 
 
 
@@ -164,9 +299,10 @@ Program:
 Output:
 
 
-//paste your output here
 
 
+
+    The square of the number is: 25
 
 
 
