@@ -16,12 +16,69 @@ Else
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    
+    #define SIZE 5  
+    
+    
+    struct Person {
+        char name[50];
+        int age;
+    };
+    
+    int main() {
+        struct Person people[SIZE];
+        int i;
+
+    printf("Enter details for %d people:\n", SIZE);
+    for(i = 0; i < SIZE; i++) {
+        printf("Person %d:\n", i + 1);
+        printf("Name: ");
+        scanf(" %[^\n]", people[i].name);
+        printf("Age: ");
+        scanf("%d", &people[i].age);
+    }
+
+    printf("\nVaccine Eligibility:\n");
+    for(i = 0; i < SIZE; i++) {
+        if(people[i].age > 6) {
+            printf("%s is eligible for vaccination (Age: %d)\n", people[i].name, people[i].age);
+        } else {
+            printf("%s is NOT eligible for vaccination (Age: %d)\n", people[i].name, people[i].age);
+        }
+    }
+
+    return 0;
+}
+
 
 
 Output:
 
-//paste your output here
+    Enter details for 5 people:
+    Person 1:
+    Name: Alice
+    Age: 10
+    Person 2:
+    Name: Bob
+    Age: 5
+    Person 3:
+    Name: Charlie
+    Age: 7
+    Person 4:
+    Name: Diana
+    Age: 6
+    Person 5:
+    Name: Eve
+    Age: 15
+    
+    Vaccine Eligibility:
+    Alice is eligible for vaccination (Age: 10)
+    Bob is NOT eligible for vaccination (Age: 5)
+    Charlie is eligible for vaccination (Age: 7)
+    Diana is NOT eligible for vaccination (Age: 6)
+    Eve is eligible for vaccination (Age: 15)
+
 
 
 Result:
@@ -44,15 +101,46 @@ Algorithm:
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    
+    struct Person {
+        char name[50];
+        int age;
+    };
+    
+    struct Person update(struct Person p) {
+        if(p.age < 18)
+            p.age = 18;
+        return p;
+    }
+    
+    int main() {
+        struct Person p1, p2;
+
+    printf("Enter name: ");
+    scanf(" %[^\n]", p1.name);
+    printf("Enter age: ");
+    scanf("%d", &p1.age);
+
+    p2 = update(p1);
+
+    printf("Name: %s\n", p2.name);
+    printf("Age: %d\n", p2.age);
+
+    return 0;
+}
+
 
 
 
 
 Output:
 
+    Enter name: John
+    Enter age: 16
+    Name: John
+    Age: 18
 
-//paste your output here
 
 
 
@@ -86,15 +174,37 @@ Use scanf to input the file name into the name array.
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    
+    int main() {
+        char filename[100];
+        FILE *fp;
+
+    printf("Enter the file name: ");
+    scanf("%s", filename);
+
+    fp = fopen(filename, "r");
+
+    if (fp == NULL) {
+        printf("Unable to open file: %s\n", filename);
+    } else {
+        printf("File '%s' opened successfully.\n", filename);
+        fclose(fp);
+    }
+
+    return 0;
+}
+
 
 
 
 
 Output:
 
-
-//paste your output here
+    
+    Enter the file name: example.txt
+    File 'example.txt' opened successfully.
+    
 
 
 
@@ -133,7 +243,33 @@ Use scanf to input the file name into the name array and the number of strings i
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    
+    int main() {
+        char filename[100];
+        char text[1000];
+        FILE *fp;
+
+    printf("Enter the file name: ");
+    scanf("%s", filename);
+
+    fp = fopen(filename, "a");  
+    if (fp == NULL) {
+        printf("Unable to open file: %s\n", filename);
+        return 1;
+    }
+
+    printf("Enter text to insert into the file:\n");
+    getchar();  
+    fgets(text, sizeof(text), stdin);
+
+    fputs(text, fp);
+    fclose(fp);
+
+    printf("Text inserted successfully into '%s'.\n", filename);
+    return 0;
+}
+
 
 
 
@@ -141,7 +277,11 @@ Program:
 Output:
 
 
-//paste your output here
+    Enter the file name: notes.txt
+    Enter text to insert into the file:
+    This is a new line added to the file.
+    Text inserted successfully into 'notes.txt'.
+
 
 
 
@@ -187,7 +327,33 @@ Algorithm:
 
 Program:
 
-//type your code here
+    #include <stdio.h>
+    struct Student {
+        char name[50];
+        int roll_no;
+        float marks;
+    };
+    
+    int main() {
+        struct Student student;
+
+    /* Input student details */
+    printf("Enter student's name: ");
+    scanf(" %[^\n]", student.name);  
+    printf("Enter roll number: ");
+    scanf("%d", &student.roll_no);
+    printf("Enter marks: ");
+    scanf("%f", &student.marks);
+
+    /* Display student details */
+    printf("\nStudent Details:\n");
+    printf("Name: %s\n", student.name);
+    printf("Roll Number: %d\n", student.roll_no);
+    printf("Marks: %.2f\n", student.marks);
+
+    return 0;
+}
+
 
 
 
@@ -195,8 +361,16 @@ Program:
 Output:
 
 
-//paste your output here
 
+
+    Enter student's name: John Doe
+    Enter roll number: 101
+    Enter marks: 85.5
+    
+    Student Details:
+    Name: John Doe
+    Roll Number: 101
+    Marks: 85.50
 
 
 
